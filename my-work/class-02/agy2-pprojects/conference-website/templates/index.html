@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GCP TechCon 2026 - The premier 1-day technical conference on Google Cloud Technologies, Vertex AI, Kubernetes, and Cloud Architecture in San Francisco.">
+    <title>GCP TechCon 2026 | Google Cloud Technical Conference</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Background Glow Animations -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <div class="gcp-cloud-icon">
+                    <i class="fa-solid fa-cloud-bolt"></i>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">GCP TechCon</span>
+                    <span class="brand-year">2026</span>
+                </div>
+            </a>
+            
+            <div class="nav-date-badge">
+                <i class="fa-regular fa-calendar-check"></i>
+                <span>Today: {{ current_date }}</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#schedule" class="nav-link active"><i class="fa-solid fa-clock"></i> Schedule</a>
+                <a href="#speakers" class="nav-link"><i class="fa-solid fa-user-group"></i> Speakers</a>
+                <a href="#venue" class="nav-link"><i class="fa-solid fa-location-dot"></i> Venue</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-tag">
+                <span class="pulse-dot"></span> 1-Day Technical Conference
+            </div>
+            
+            <h1 class="hero-title">
+                Google Cloud <span class="gradient-text">Technologies Summit</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Join cloud architects, AI engineers, and DevOps leaders for an intensive day of {{ talks|length }} expert technical sessions on Vertex AI, BigQuery, GKE, and Cloud Infrastructure.
+            </p>
+
+            <!-- Metadata Pills -->
+            <div class="hero-meta-grid">
+                <div class="meta-card">
+                    <div class="meta-icon"><i class="fa-regular fa-calendar-days"></i></div>
+                    <div class="meta-content">
+                        <span class="meta-label">Event Date</span>
+                        <span class="meta-value">{{ info.date_display }}</span>
+                    </div>
+                </div>
+
+                <div class="meta-card">
+                    <div class="meta-icon"><i class="fa-regular fa-clock"></i></div>
+                    <div class="meta-content">
+                        <span class="meta-label">Schedule</span>
+                        <span class="meta-value">{{ info.time }}</span>
+                    </div>
+                </div>
+
+                <div class="meta-card">
+                    <div class="meta-icon"><i class="fa-solid fa-map-pin"></i></div>
+                    <div class="meta-content">
+                        <span class="meta-label">Location</span>
+                        <span class="meta-value">{{ info.location }}</span>
+                    </div>
+                </div>
+
+                <div class="meta-card highlight-card">
+                    <div class="meta-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <div class="meta-content">
+                        <span class="meta-label">Lunch & Networking</span>
+                        <span class="meta-value">60-Min Lunch Break</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{ talks|length }}</span>
+                    <span class="stat-text">Tech Talks</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span class="stat-text">Expert Speakers</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-text">Tracks / Categories</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">60m</span>
+                    <span class="stat-text">Lunch Break</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        
+        <!-- Search & Filter Controls -->
+        <section id="schedule" class="controls-section">
+            <div class="section-header">
+                <h2>Conference <span class="gradient-text">Schedule & Timetable</span></h2>
+                <p>Filter talks by Category (1 or 2), Speaker name, or Title in real-time.</p>
+            </div>
+
+            <div class="filter-wrapper">
+                <!-- Search Bar -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search by talk title, speaker name, or category..." autocomplete="off">
+                    <button id="clearSearchBtn" class="clear-btn" title="Clear Search" style="display: none;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">
+                        <i class="fa-solid fa-layer-group"></i> All Sessions ({{ talks|length }})
+                    </button>
+                    <button class="filter-btn" data-category="1">
+                        <span class="cat-pill cat-1">Category 1</span> AI & Machine Learning
+                    </button>
+                    <button class="filter-btn" data-category="2">
+                        <span class="cat-pill cat-2">Category 2</span> Cloud Infrastructure & DevOps
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Search Status -->
+            <div class="filter-status">
+                <span id="resultsCount">Showing {{ talks|length }} of {{ talks|length }} technical sessions</span>
+                <span id="activeFilterBadge" class="active-badge" style="display: none;"></span>
+            </div>
+        </section>
+
+        <!-- Timetable View -->
+        <section class="timetable-section">
+            <div class="timeline" id="timelineContainer">
+                
+                {% for item in timeline %}
+                    {% if not item.is_talk %}
+                        {% if item.data.is_lunch %}
+                            <!-- LUNCH BREAK HIGHLIGHT CARD (60 MINUTES) -->
+                            <div class="lunch-break-card">
+                                <div class="lunch-badge">
+                                    <i class="fa-solid fa-utensils"></i> 60-Minute Lunch & Networking Break
+                                </div>
+                                <div class="lunch-time">{{ item.data.time }} (60 Mins)</div>
+                                <h3 class="lunch-title">{{ item.data.title }}</h3>
+                                <p class="lunch-desc">
+                                    {{ item.data.description }}
+                                </p>
+                                <div class="lunch-meta">
+                                    <span><i class="fa-solid fa-location-dot"></i> {{ item.data.location }}</span>
+                                    <span><i class="fa-solid fa-users"></i> All Attendees Included</span>
+                                </div>
+                            </div>
+                        {% else %}
+                            <!-- General Break -->
+                            <div class="timeline-break-card">
+                                <div class="break-time"><i class="fa-regular fa-clock"></i> {{ item.data.time }}</div>
+                                <div class="break-content">
+                                    <div class="break-icon">
+                                        {% if item.data.type == 'coffee' %}
+                                            <i class="fa-solid fa-mug-hot"></i>
+                                        {% else %}
+                                            <i class="fa-solid fa-champagne-glasses"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        <h4>{{ item.data.title }} ({{ item.data.duration }})</h4>
+                                        <p>{{ item.data.location }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <!-- Talk Card -->
+                        {% set talk = item.data %}
+                        {% set speaker_names = [] %}
+                        {% for s in talk.speakers %}
+                            {% set _ = speaker_names.append(s.first_name ~ ' ' ~ s.last_name ~ ' ' ~ s.company) %}
+                        {% endfor %}
+                        {% set search_data = talk.title ~ ' ' ~ talk.category ~ ' ' ~ speaker_names|join(' ') %}
+                        
+                        <div class="talk-card" data-id="{{ talk.id }}" data-category="{{ talk.category_id }}" data-search="{{ search_data|lower }}">
+                            <div class="card-sidebar">
+                                <div class="talk-time"><i class="fa-solid fa-clock"></i> {{ talk.time }}</div>
+                                <span class="cat-pill cat-{{ talk.category_id }}">
+                                    <i class="fa-solid {% if talk.category_id == 1 %}fa-robot{% else %}fa-server{% endif %}"></i> 
+                                    Category {{ talk.category_id }}: {% if talk.category_id == 1 %}AI & ML{% else %}Infra & DevOps{% endif %}
+                                </span>
+                                <div class="room-tag"><i class="fa-solid fa-door-open"></i> {{ talk.room }}</div>
+                            </div>
+                            <div class="card-main">
+                                <h3 class="talk-title" onclick="openTalkModal({{ talk.id }})">{{ talk.title }}</h3>
+                                <p class="talk-desc">{{ talk.description }}</p>
+                                
+                                <div class="speakers-row">
+                                    {% for speaker in talk.speakers %}
+                                    <div class="speaker-chip">
+                                        <img src="{{ speaker.avatar }}" alt="{{ speaker.first_name }} {{ speaker.last_name }}" class="speaker-img">
+                                        <div class="speaker-info">
+                                            <span class="speaker-name">{{ speaker.first_name }} {{ speaker.last_name }}</span>
+                                            <span class="speaker-role">{{ speaker.role }} @ {{ speaker.company }}</span>
+                                        </div>
+                                        <a href="{{ speaker.linkedin }}" target="_blank" class="linkedin-link" title="LinkedIn Profile">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="card-footer">
+                                    <button class="details-btn" onclick="openTalkModal({{ talk.id }})">View Full Abstract <i class="fa-solid fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- No Results State -->
+                <div id="noResultsState" class="no-results-card" style="display: none;">
+                    <i class="fa-solid fa-magnifying-glass-slash no-results-icon"></i>
+                    <h3>No technical talks match your query</h3>
+                    <p>Try searching for terms like "Vertex AI", "Kubernetes", "Maya Lin", or click "All Sessions".</p>
+                    <button class="reset-btn" onclick="resetFilters()">Reset Search Filters</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Speakers Showcase Section -->
+        <section id="speakers" class="speakers-section">
+            <div class="section-header">
+                <h2>Featured <span class="gradient-text">Keynote Speakers</span></h2>
+                <p>Learn from industry experts, GCP architects, and AI research leaders.</p>
+            </div>
+
+            <div class="speakers-grid">
+                {% for talk in talks %}
+                    {% for speaker in talk.speakers %}
+                    <div class="speaker-card" data-speaker-search="{{ speaker.first_name }} {{ speaker.last_name }} {{ speaker.company }}">
+                        <div class="speaker-card-header">
+                            <img src="{{ speaker.avatar }}" alt="{{ speaker.first_name }} {{ speaker.last_name }}" class="speaker-card-avatar">
+                            <a href="{{ speaker.linkedin }}" target="_blank" class="speaker-linkedin-btn" title="LinkedIn Profile">
+                                <i class="fa-brands fa-linkedin"></i> Profile
+                            </a>
+                        </div>
+                        <h4 class="speaker-card-name">{{ speaker.first_name }} {{ speaker.last_name }}</h4>
+                        <span class="speaker-card-role">{{ speaker.role }}</span>
+                        <span class="speaker-card-company"><i class="fa-solid fa-building"></i> {{ speaker.company }}</span>
+                        <div class="speaker-card-session">
+                            <span class="session-label">Speaking on:</span>
+                            <span class="session-title" onclick="openTalkModal({{ talk.id }})">{{ talk.title }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Venue & Location Section -->
+        <section id="venue" class="venue-section">
+            <div class="venue-card">
+                <div class="venue-info">
+                    <span class="badge-tag"><i class="fa-solid fa-location-dot"></i> Venue & Location</span>
+                    <h2>Google Developer Center</h2>
+                    <p class="venue-address">345 Spear Street, San Francisco, CA 94105</p>
+                    <p class="venue-desc">Located in the heart of San Francisco's tech district, equipped with state-of-the-art auditorium sound systems, high-speed Wi-Fi, and outdoor terrace lounge.</p>
+                    <div class="venue-features">
+                        <span><i class="fa-solid fa-wifi"></i> 1Gbps Event Wi-Fi</span>
+                        <span><i class="fa-solid fa-square-parking"></i> On-site Parking</span>
+                        <span><i class="fa-solid fa-train"></i> Near BART / Caltrain</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Detailed Talk Modal -->
+    <div id="talkModal" class="modal-backdrop">
+        <div class="modal-box">
+            <button class="modal-close-btn" onclick="closeTalkModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modalContent">
+                <!-- Content inserted dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-cloud-bolt"></i> GCP TechCon 2026
+                </div>
+                <p>The premier 1-day Google Cloud Technical Summit for engineers and cloud leaders.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 GCP TechCon. Built with Python & Flask.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
