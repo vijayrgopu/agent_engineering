@@ -1,0 +1,71 @@
+company:
+  name: WidgetWare
+  description: >-
+    WidgetWare provides software and professional services that enable manufacturing
+    and industrial-automation companies to modernize plant operations, integrate sensor data,
+    and adopt AI-enabled automated decision systems.
+
+offerings:
+  - id: plant_operations_platform
+    name: Plant Operations Platform
+    category: Enterprise Software
+    description: >-
+      A unified software platform for monitoring plant metrics, aggregating IoT sensor data,
+      and orchestrating real-time production workflows across manufacturing facilities.
+    target_buyers:
+      - Vice President of Manufacturing
+      - Director of Plant Operations
+      - Chief Technology Officer
+      - Operations Engineering Manager
+    approved_claims:
+      - "Centralizes data streams from legacy machinery and modern industrial sensors."
+      - "Provides operational dashboards and real-time alert notifications for plant floor managers."
+      - "Supports standard industrial protocols including OPC UA, Modbus, and MQTT."
+
+  - id: industrial_ai_accelerator
+    name: Industrial AI Accelerator
+    category: Professional Services & AI Solutions
+    description: >-
+      A guided implementation package and machine learning framework designed to deploy predictive maintenance
+      and automated quality inspection models into existing manufacturing pipelines.
+    target_buyers:
+      - VP of Innovation / Digital Transformation
+      - Head of Quality Assurance
+      - VP of Operations
+    approved_claims:
+      - "Accelerates deployment of custom predictive maintenance models on factory floors."
+      - "Provides pre-built templates for anomaly detection in sensor telemetry."
+      - "Includes hands-on engineering support for system integration and operator training."
+
+  - id: smart_quality_inspector
+    name: Smart Quality Inspector
+    category: Vision & Quality Assurance
+    description: >-
+      An automated optical inspection solution leveraging edge AI vision models to detect surface defects and component assembly errors in real time.
+    target_buyers:
+      - Head of Quality Assurance
+      - VP of Manufacturing Engineering
+      - Quality Control Manager
+    approved_claims:
+      - "Performs real-time visual inspection on high-speed assembly lines."
+      - "Integrates with existing industrial cameras and PLC reject mechanisms."
+      - "Reduces manual inspection overhead on manufacturing production lines."
+
+  - id: edge_telemetry_gateway
+    name: Edge Telemetry Gateway
+    category: Edge Infrastructure & Hardware
+    description: >-
+      A ruggedized edge computing device and software stack for local sensor data processing, protocol translation, and secure cloud sync.
+    target_buyers:
+      - Chief Technology Officer
+      - VP of Industrial Automation
+      - IT/OT Infrastructure Lead
+    approved_claims:
+      - "Provides low-latency local processing for mission-critical sensor telemetry."
+      - "Secures machine-to-cloud communications with hardware-encrypted credentials."
+      - "Enables edge data filtering to reduce bandwidth consumption."
+
+rules:
+  prohibit_invented_customers: true
+  prohibit_unsupported_numerical_claims: true
+  prohibit_guaranteed_outcomes: true

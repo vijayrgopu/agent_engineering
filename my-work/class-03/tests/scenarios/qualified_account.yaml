@@ -1,0 +1,32 @@
+account:
+  id: acc_101
+  name: Apex Dynamics Manufacturing
+  industry: manufacturing
+  employee_count: 850
+  region: North America
+  annual_revenue_usd: 120000000
+  notes: "Targeting VP of Manufacturing for plant modernization pitch."
+
+objective: "Evaluate account fit for Plant Operations Platform and assess readiness."
+
+evidence:
+  - claim: "Apex Dynamics announced a $15M smart factory modernization project for their Ohio plant."
+    classification: verified_fact
+    source:
+      name: Apex Dynamics Press Release
+      url: https://example.com/news/apex-smart-factory
+      retrieved_at: "2026-08-01"
+    excerpt: "Apex Dynamics is investing $15M in IoT sensors and automated plant analytics in 2026."
+
+  - claim: "Company has active job postings for Industrial Automation Engineers."
+    classification: verified_fact
+    source:
+      name: Corporate Careers Page
+      url: https://example.com/careers/automation-engineer
+      retrieved_at: "2026-08-05"
+    excerpt: "Seeking experienced engineers to integrate plant floor machinery with cloud analytics."
+
+state:
+  current_step: account_evaluation
+  prior_decisions: []
+  approval_status: pending_human_review

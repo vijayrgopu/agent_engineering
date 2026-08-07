@@ -1,0 +1,24 @@
+account:
+  id: acc_303
+  name: Stealth Industrial Holdings
+  industry: unknown
+  employee_count: unknown
+  region: unknown
+  annual_revenue_usd: unknown
+  notes: "Inbound contact form submitted with minimal company information."
+
+objective: "Assess ICP fit and determine required follow-up research."
+
+evidence:
+  - claim: "Company operates a contact portal on an unverified web domain."
+    classification: unknown
+    source:
+      name: Web Registry
+      url: https://example.com/whois-stealth
+      retrieved_at: "2026-08-04"
+    excerpt: "No public corporate profile available."
+
+state:
+  current_step: account_evaluation
+  prior_decisions: []
+  approval_status: escalate_to_human

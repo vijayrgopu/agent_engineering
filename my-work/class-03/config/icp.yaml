@@ -1,0 +1,34 @@
+fit_criteria:
+  min_company_size: 250
+  preferred_industries:
+    - manufacturing
+    - industrial_automation
+    - automotive_manufacturing
+    - aerospace_manufacturing
+    - heavy_machinery
+  excluded_industries:
+    - retail
+    - financial_services
+    - software_saas
+    - healthcare_services
+    - hospitality
+  preferred_regions:
+    - North America
+    - Europe
+    - Asia Pacific
+
+readiness_signals:
+  buying_signals:
+    - "Recent announcement of plant modernization or digital transformation initiative."
+    - "Active hiring for Industrial IoT, Automation, or Smart Factory roles."
+    - "Reported operational bottlenecks, unplanned downtime, or quality control challenges."
+    - "Expansion of manufacturing facilities or new plant construction."
+
+required_fields:
+  - name
+  - industry
+  - employee_count
+  - region
+
+rules:
+  distinguish_fit_from_readiness: true

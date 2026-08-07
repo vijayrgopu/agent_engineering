@@ -1,0 +1,24 @@
+account:
+  id: acc_202
+  name: MicroTech Retail Goods
+  industry: retail
+  employee_count: 45
+  region: North America
+  annual_revenue_usd: 3500000
+  notes: "Small e-commerce boutique inquiring about digital tools."
+
+objective: "Evaluate account fit for WidgetWare product offerings."
+
+evidence:
+  - claim: "MicroTech is a retail boutique operating 3 physical stores and an online store."
+    classification: verified_fact
+    source:
+      name: Company About Page
+      url: https://example.com/about-microtech
+      retrieved_at: "2026-08-02"
+    excerpt: "MicroTech operates physical retail storefronts and an online marketplace."
+
+state:
+  current_step: account_evaluation
+  prior_decisions: []
+  approval_status: pending_human_review
